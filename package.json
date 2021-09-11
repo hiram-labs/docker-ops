@@ -1,0 +1,12 @@
+{
+  "name": "docker-ops",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "docker-compose up -d",
+    "stop": "docker-compose down",
+    "ptn:client": "docker exec -it portainer /bin/bash --login",
+    "preinstall": "npx only-allow yarn"
+  }
+}
