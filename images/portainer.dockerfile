@@ -1,3 +1,3 @@
 FROM portainer/portainer-ce
 
-CMD [portainer, --admin-password $2a$12$8CI9xHVa1QFNFMVmnbeqm.jP1Ao4O0TZGCG3Jhb3BPUzGCdQjvrtW]
+CMD ["--admin-password=$2y$05$8MelKR2QAVA67ikcjn7WRe5ddGqmp5S4PcObF9q6UXnZ0Ykq2pRiq"]
