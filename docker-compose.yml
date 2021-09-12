@@ -1,6 +1,18 @@
 version: "3.1"
 
 services:
+  watchtower:
+    build:
+      context: ./images
+      dockerfile: watchtower.dockerfile
+    image: hiramlabs/watchtower
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/.docker/config.json:/config.json
+    network_mode: "host"
+
   portainer:
     build:
       context: ./images
@@ -15,5 +27,44 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
 
+  registry:
+    build:
+      context: ./images
+      dockerfile: registry.dockerfile
+    image: hiramlabs/registry
+    container_name: registry
+    restart: unless-stopped
+    ports:
+      - 9022:5000
+    volumes:
+      - ./volume/registry:/auth
+      - registry_data:/var/lib/registry
+
+  registryui:
+    build:
+      context: ./images
+      dockerfile: registryui.dockerfile
+    image: hiramlabs/registryui
+    container_name: registryui
+    restart: unless-stopped
+    ports:
+      - 9023:80
+    depends_on:
+      - registry
+
+  cdn:
+    build:
+      context: ./images
+      dockerfile: cdn.dockerfile
+    image: hiramlabs/cdn
+    container_name: cdn
+    restart: unless-stopped
+    ports:
+      - 9024:80
+    volumes:
+      - ~/cdn:/srv
+
 volumes:
   portainer_data:
+  registry_data:
+

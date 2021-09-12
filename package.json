@@ -6,7 +6,7 @@
   "scripts": {
     "start": "docker-compose up -d",
     "stop": "docker-compose down",
-    "ptn:client": "docker exec -it portainer /bin/bash --login",
+    "cdn:client": "docker exec -it cdn /bin/sh --login",
     "preinstall": "npx only-allow yarn"
   }
 }
