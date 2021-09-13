@@ -2,6 +2,6 @@ FROM konradkleine/docker-registry-frontend:v2
 
 ENV ENV_DOCKER_REGISTRY_HOST registry
 ENV ENV_DOCKER_REGISTRY_PORT 5000
-ENV ENV_REGISTRY_PROXY_FQDN registry.hiramlabs.com
+ENV ENV_REGISTRY_PROXY_FQDN registry.hiramlabs.com/hub
 ENV ENV_REGISTRY_PROXY_PORT 443
 ENV ENV_MODE_BROWSE_ONLY false
