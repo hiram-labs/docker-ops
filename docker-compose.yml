@@ -20,12 +20,14 @@ services:
     image: hiramlabs/portainer
     container_name: portainer
     restart: unless-stopped
-    ports:
-      - 9020:9000
-      - 9021:8000
+#    ports:
+#      - 9020:9000
+#      - 9021:8000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
+    networks:
+      - interface
 
   registry:
     build:
@@ -34,11 +36,13 @@ services:
     image: hiramlabs/registry
     container_name: registry
     restart: unless-stopped
-    ports:
-      - 9022:5000
+#    ports:
+#      - 9022:5000
     volumes:
       - ./volume/registry:/auth
       - registry_data:/var/lib/registry
+    networks:
+      - interface
 
   registryui:
     build:
@@ -47,10 +51,12 @@ services:
     image: hiramlabs/registryui
     container_name: registryui
     restart: unless-stopped
-    ports:
-      - 9023:80
+#    ports:
+#      - 9023:80
     depends_on:
       - registry
+    networks:
+      - interface
 
   cdn:
     build:
@@ -59,12 +65,19 @@ services:
     image: hiramlabs/cdn
     container_name: cdn
     restart: unless-stopped
-    ports:
-      - 9024:80
+#    ports:
+#      - 9024:80
     volumes:
       - ~/cdn:/srv
+    networks:
+      - interface
 
 volumes:
   portainer_data:
   registry_data:
+
+networks:
+  interface:
+    external:
+      name: interface
 
