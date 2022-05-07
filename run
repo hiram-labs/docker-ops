@@ -6,6 +6,7 @@ __START_DOCKER_COMPOSE="start"
 __STOP_DOCKER_COMPOSE="stop"
 
 __START_CDN_SHELL="cdn:shell"
+__START_REGISTRY_SHELL="reg:shell"
 
 __CURRENT_UID=$(id -u):$(id -g)
 export __CURRENT_UID
@@ -22,4 +23,8 @@ fi
 
 if [[ "$__ARG" == "$__START_CDN_SHELL" ]]; then
     docker exec -it cdn /bin/bash --login
+fi
+
+if [[ "$__ARG" == "$__START_REGISTRY_SHELL" ]]; then
+    docker exec -it registry /bin/sh --login
 fi

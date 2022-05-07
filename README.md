@@ -48,3 +48,9 @@ Use the `./run` shell script to execute the following commands:
 ```
 ./run cdn:shell
 ```
+
+- get shell into registry container
+
+```
+./run reg:shell
+```
