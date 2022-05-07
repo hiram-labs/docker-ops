@@ -39,7 +39,8 @@ services:
     #    ports:
     #      - 9022:5000
     volumes:
-      - ./volume/registry:/auth
+      - ./volume/registry/htpasswd:/auth/htpasswd
+      - ./volume/registry/config.yml:/etc/docker/registry/config.yml
       - registry_data:/var/lib/registry
     networks:
       - interface
