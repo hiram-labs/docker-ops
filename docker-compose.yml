@@ -6,6 +6,8 @@ services:
     image: hiramlabs/watchtower
     container_name: watchtower
     restart: unless-stopped
+    env_file:
+      - .secret.env
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ~/.docker/config.json:/config.json
