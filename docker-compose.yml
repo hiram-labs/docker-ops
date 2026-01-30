@@ -10,7 +10,7 @@ services:
       - .secret.env
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ~/.docker/config.json:/config.json
+      - ${HOME}/.docker/config.json:/config.json
     network_mode: "host"
 
   portainer:
@@ -69,7 +69,7 @@ services:
     #    ports:
     #      - 9024:80
     volumes:
-      - ~/cdn:/srv
+      - ${HOME}/cdn:/srv
     networks:
       - interface
 
